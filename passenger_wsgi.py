@@ -1,11 +1,8 @@
 # Dependencies
-import sys
-sys.path.append('/home/dldwvxqr/all_domains/fuckthisguyjeff.com/config') 
-
 from flask import Flask, render_template
 import pymysql.cursors
 import random
-import config
+import lib.config as config
 
 application = Flask(__name__)
 application.debug = True
