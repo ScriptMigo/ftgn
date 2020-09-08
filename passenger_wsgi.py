@@ -28,7 +28,7 @@ def main():
         cursor.execute(sql)
         result = cursor.fetchone()
         # Pass returned quote to html template file
-        return render_template('index.htm', data=result[0]['quote'])
+        return render_template('index.htm', data=result['quote'])
 
     connection.close()
 
