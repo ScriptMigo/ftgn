@@ -1,3 +1,4 @@
+# Dependencies
 import sys
 sys.path.append('/home/dldwvxqr/all_domains/fuckthisguyjeff.com/config') 
 
@@ -9,11 +10,9 @@ import config
 application = Flask(__name__)
 application.debug = True
 
-
 @application.route("/")
 def main():
     # Set Database connection string
-    
     connection = pymysql.connect(host='localhost',
                                 user=config.user,
                                 password=config.password,
@@ -24,15 +23,14 @@ def main():
     # Bring back random record from quote table
     sql = 'select * from ftgj_quotes order by rand() limit 1'
 
-
+    # Parse resulting data
     with connection.cursor() as cursor:
         cursor.execute(sql)
-        result = cursor.fetchall()
+        result = cursor.fetchone()
         # Pass returned quote to html template file
         return render_template('index.htm', data=result[0]['quote'])
 
     connection.close()
-
 
 
 if __name__ == "__main__":
